@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1877f2">
+<title>ASs Te</title>
+<style>
+:root{--b:#1877f2;--bg:#f0f2f5;--card:#fff;--tx:#050505;--mu:#65676b;--ln:#ced0d4;--sec:#e4e6eb;--gr:#42b72a;--out:#dfe3e8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#18191a;--card:#242526;--tx:#e4e6eb;--mu:#b0b3b8;--ln:#3e4042;--sec:#3a3b3c;--out:#0e0f10}}
+:root[data-theme="dark"]{--bg:#18191a;--card:#242526;--tx:#e4e6eb;--mu:#b0b3b8;--ln:#3e4042;--sec:#3a3b3c;--out:#0e0f10}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--out);color:var(--tx);font-size:15px}
+#app{max-width:520px;height:100%;margin:0 auto;background:var(--bg);display:flex;flex-direction:column;position:relative;overflow:hidden}
+@media(min-width:600px){#app{box-shadow:0 0 30px #0003}}
+.screen{display:none;flex:1;min-height:0;flex-direction:column}.screen.on{display:flex}
+.scr{flex:1;overflow-y:auto;overflow-x:hidden}
+.logo{font-weight:800;font-size:27px;color:var(--b);letter-spacing:-1px}
+.tb{background:var(--card);padding:8px 12px;display:flex;align-items:center;justify-content:space-between}
+.ic{width:36px;height:36px;border-radius:50%;background:var(--sec);display:grid;place-items:center;margin-left:8px;font-size:16px;border:0;color:var(--tx);cursor:pointer}
+.av{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-weight:700}
+.nav{display:flex;background:var(--card);border-top:1px solid var(--ln)}
+.nav button{flex:1;border:0;background:none;padding:7px 0 6px;font-size:10px;color:var(--mu);cursor:pointer;font-family:inherit}
+.nav button span{display:block;font-size:20px}.nav .on{color:var(--b);font-weight:700}
+.comp,.stories,.card,.pro{background:var(--card);margin-bottom:8px}
+.comp{padding:10px 12px 0}.comp .in{display:flex;gap:8px;align-items:center;padding-bottom:10px}
+.q{flex:1;background:var(--bg);border-radius:20px;padding:10px 14px;color:var(--mu);cursor:pointer}
+.sh{display:flex;border-top:1px solid var(--sec)}.sh button{flex:1;border:0;background:none;padding:10px 0;font-weight:600;color:var(--mu);font-size:13px;cursor:pointer;font-family:inherit}
+.stories{display:flex;gap:6px;padding:10px 12px;overflow-x:auto}
+.st{flex:none;width:100px;height:160px;border-radius:12px;position:relative;color:#fff;font-weight:600;font-size:12px;display:flex;align-items:flex-end;padding:8px;cursor:pointer}
+.st .r{position:absolute;top:8px;left:8px;width:34px;height:34px;border-radius:50%;border:3px solid var(--b);background:#789;display:grid;place-items:center;font-size:12px}
+.st.me{background:var(--card);color:var(--tx);border:1px solid var(--sec);flex-direction:column;padding:0;overflow:hidden;align-items:stretch}
+.st.me .ph{flex:1;background:var(--sec);display:grid;place-items:center;font-size:32px}
+.st.me .t{padding:18px 4px 8px;text-align:center;position:relative}
+.st.me i{position:absolute;top:-17px;left:50%;transform:translateX(-50%);width:32px;height:32px;border-radius:50%;background:var(--b);border:3px solid var(--card);color:#fff;font-style:normal;font-size:20px;display:grid;place-items:center}
+.card{padding-top:10px}.card .h{display:flex;gap:8px;padding:0 12px;align-items:center}
+.n{font-weight:600}.n em{font-style:normal;color:var(--b)}.s{font-size:12px;color:var(--mu)}
+.card p{padding:8px 12px 10px;line-height:1.35;font-size:16px}
+.img{aspect-ratio:4/3;display:grid;place-items:center;font-size:56px}
+.cnt{display:flex;justify-content:space-between;padding:9px 12px;font-size:13px;color:var(--mu)}
+.lk{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--b);color:#fff;font-size:10px;margin-right:4px}
+.act{display:flex;border-top:1px solid var(--sec);margin:0 12px;padding:2px 0}
+.act button{flex:1;border:0;background:none;padding:9px 0;color:var(--mu);font-weight:600;font-size:14px;cursor:pointer;border-radius:6px;font-family:inherit}
+.act button:hover{background:var(--bg)}.act .liked{color:var(--b)}
+.btn{display:block;width:100%;border:0;border-radius:6px;padding:12px;font-weight:700;font-size:16px;background:var(--b);color:#fff;cursor:pointer;font-family:inherit}
+.btn.g{background:var(--gr)}.btn.s{background:var(--sec);color:var(--tx)}
+.pad{padding:22px 16px}
+.login{background:var(--card);border-radius:8px;padding:14px;margin-top:16px;box-shadow:0 2px 4px #0001,0 8px 16px #0001}
+.field{width:100%;border:1px solid var(--ln);background:var(--card);color:var(--tx);border-radius:6px;padding:13px;margin:7px 0;font-size:16px;font-family:inherit}
+.tog{display:flex;gap:8px;margin:8px 0}.tog button{flex:1;padding:10px;border:1px solid var(--ln);border-radius:6px;background:var(--card);font-weight:600;cursor:pointer;color:var(--mu);font-family:inherit}
+.tog .on{border-color:var(--b);background:#1877f222;color:var(--b)}
+.dk{background:#18191a;color:#e4e6eb}.dk .tb{background:#242526}
+.cam{margin:12px;flex:1;min-height:240px;border-radius:12px;background:linear-gradient(160deg,#3a3b3c,#242526);display:grid;place-items:center;font-size:48px;position:relative}
+.cam small{position:absolute;bottom:10px;font-size:12px;color:#b0b3b8}
+.shut{width:66px;height:66px;border-radius:50%;border:4px solid #fff;margin:6px auto;display:grid;place-items:center;cursor:pointer;background:none;flex:none}
+.shut i{width:46px;height:46px;border-radius:50%;background:var(--b)}
+.vid{flex:1;background:linear-gradient(180deg,#242526,#111 70%);color:#fff;position:relative;display:flex;flex-direction:column}
+.vt{display:flex;justify-content:center;gap:22px;padding:12px;font-weight:700}.vt span{opacity:.6;cursor:pointer}.vt .on{opacity:1;border-bottom:3px solid var(--b)}
+.side{position:absolute;right:12px;bottom:70px;text-align:center;display:flex;flex-direction:column;gap:14px;font-size:12px}
+.side button{border:0;background:none;color:#fff;font-size:12px;cursor:pointer}.side b{display:block;font-size:28px;font-weight:400}
+.ft{position:absolute;left:14px;bottom:14px;right:80px}.ft button{margin-left:8px;border:0;background:var(--b);color:#fff;border-radius:6px;padding:3px 10px;font-weight:600}
+.cover{height:130px;background:linear-gradient(135deg,#6aa9ff,#1877f2 60%,#0b4fb3)}
+.pro{padding:0 12px 12px}.big{width:100px;height:100px;border-radius:50%;margin:-54px 0 6px;border:4px solid var(--card);display:grid;place-items:center;font-size:38px;color:#fff;background:#9a5b2b}
+.pro h2{font-size:22px}.pro .sub{color:var(--mu);margin:2px 0 10px}.bt{display:flex;gap:6px}.bt .btn{font-size:14px;padding:10px}
+.stats{display:flex;gap:18px;margin-top:12px;color:var(--mu)}.stats b{color:var(--tx)}
+.li{display:flex;gap:12px;align-items:center;padding:10px 14px;background:var(--card);border-bottom:1px solid var(--sec)}.li .n{flex:1}
+.li button{border:0;border-radius:6px;padding:7px 14px;background:var(--b);color:#fff;font-weight:600;cursor:pointer}
+h3.hd{padding:14px;font-size:20px;background:var(--card)}
+</style>
+</head>
+<body>
+<div id="app">
+
+<section class="screen on" id="signup"><div class="scr pad">
+ <div style="text-align:center;margin-top:24px"><div class="logo" style="font-size:52px">ASs Te</div>
+ <p style="font-size:17px;margin:8px 10px 0">Retrouve tes amis et ta famille, partout à Madagascar.</p></div>
+ <div class="login">
+  <input class="field" type="tel" placeholder="🇲🇬 +261 – Numéro de téléphone">
+  <button class="btn" onclick="go('feed')">Recevoir le code SMS</button>
+  <input class="field" style="text-align:center;letter-spacing:8px" placeholder="Code à 6 chiffres" maxlength="6" inputmode="numeric">
+  <div class="tog" id="lang"><button class="on">Malagasy</button><button>Français</button></div>
+  <button class="btn g" style="width:80%;margin:12px auto 4px" onclick="go('feed')">Créer un compte</button>
+ </div></div></section>
+
+<section class="screen" id="feed">
+ <div class="tb"><div class="logo">ASs Te</div><div style="display:flex"><button class="ic" onclick="go('story')">➕</button><button class="ic">🔍</button><button class="ic" onclick="go('msg')">💬</button></div></div>
+ <div class="scr">
+  <div class="comp"><div class="in"><div class="av" style="background:var(--b)">J</div><div class="q">Quoi de neuf ?</div></div>
+   <div class="sh"><button onclick="go('videos')">🎥 Vidéo</button><button onclick="go('story')">🖼️ Photo</button><button onclick="go('story')">⭕ Story</button></div></div>
+  <div class="stories">
+   <div class="st me" onclick="go('story')"><div class="ph">👤</div><div class="t"><i>+</i>Créer une story</div></div>
+   <div class="st" style="background:linear-gradient(#e8a33d,#8a4b1e)"><div class="r">H</div>Hery Z.</div>
+   <div class="st" style="background:linear-gradient(#4aa3c7,#1b4d6b)"><div class="r">M</div>Miora R.</div>
+   <div class="st" style="background:linear-gradient(#7bb661,#2f5d2a)"><div class="r">T</div>Tojo A.</div>
+  </div>
+  <div class="card"><div class="h"><div class="av" style="background:#c0392b">M</div><div style="flex:1"><div class="n">Miora R. · <em>Suivre</em></div><div class="s">il y a 2 h · 🌐</div></div><b style="color:var(--mu)">···</b></div>
+   <p>Beau coucher de soleil sur le lac Anosy ce soir 🌅</p>
+   <div class="img" style="background:linear-gradient(#f4a259,#bc4b51 60%,#5b3a5e)">🌇</div>
+   <div class="cnt"><span><i class="lk">👍</i><b class="c" data-n="124">124</b></span><span>18 commentaires</span></div>
+   <div class="act"><button class="lb">👍 J'aime</button><button>💬 Commenter</button><button>↪ Partager</button></div></div>
+  <div class="card"><div class="h"><div class="av" style="background:#2e86c1">T</div><div style="flex:1"><div class="n">Tojo A. · <em>Suivre</em></div><div class="s">il y a 5 h · 🌐</div></div><b style="color:var(--mu)">···</b></div>
+   <p>Premier jour au marché, le litchi est déjà là !</p>
+   <div class="img" style="background:linear-gradient(#7bb661,#2f5d2a)">🍒</div>
+   <div class="cnt"><span><i class="lk">👍</i><b class="c" data-n="67">67</b></span><span>9 commentaires</span></div>
+   <div class="act"><button class="lb">👍 J'aime</button><button>💬 Commenter</button><button>↪ Partager</button></div></div>
+ </div></section>
+
+<section class="screen dk" id="story">
+ <div class="tb"><button class="ic" onclick="go('feed')">✕</button><b>Créer une story</b><span style="width:36px"></span></div>
+ <div class="cam" id="cam">📷<small>Visible 24 h · vidéo 15 s max</small></div>
+ <div class="tog" style="margin:0 14px" id="mode"><button class="on">Photo</button><button>Vidéo</button></div>
+ <button class="shut" onclick="alert('Maquette : la caméra sera branchée dans la vraie application.')"><i></i></button>
+ <p style="text-align:center;margin:6px 0 14px;color:#b0b3b8">🖼️ Galerie</p></section>
+
+<section class="screen" id="videos"><div class="vid">
+  <div class="vt"><span class="on">Pour toi</span><span>Amis</span></div>
+  <div style="flex:1;display:grid;place-items:center;font-size:70px;opacity:.4">🎬</div>
+  <div class="side"><button class="vl"><b>👍</b><i class="vc" data-n="2100">2,1 k</i></button><button><b>💬</b>86</button><button><b>↪</b>Partager</button></div>
+  <div class="ft"><b>Hery Z.</b><button>Suivre</button><p style="padding-top:6px">Route de Nosy Be en moto 🏍️ #madagascar</p></div>
+ </div></section>
+
+<section class="screen" id="friends"><h3 class="hd">Amis</h3><div class="scr">
+ <div class="li"><div class="av" style="background:#c0392b">M</div><div class="n">Miora R.<div class="s">Antananarivo</div></div><button>Ajouter</button></div>
+ <div class="li"><div class="av" style="background:#2e86c1">T</div><div class="n">Tojo A.<div class="s">Toamasina</div></div><button>Ajouter</button></div>
+ <div class="li"><div class="av" style="background:#d68910">H</div><div class="n">Hery Z.<div class="s">Nosy Be</div></div><button>Ajouter</button></div></div></section>
+
+<section class="screen" id="msg"><h3 class="hd">Messages</h3><div class="scr">
+ <div class="li"><div class="av" style="background:#c0392b">M</div><div class="n">Miora R.<div class="s">On se voit demain ? · 2 h</div></div></div>
+ <div class="li"><div class="av" style="background:#2e86c1">T</div><div class="n">Tojo A.<div class="s">Merci pour la photo ! · 1 j</div></div></div></div></section>
+
+<section class="screen" id="profile"><div class="scr">
+  <div class="cover"></div>
+  <div class="pro"><div class="big">J</div><h2>Julianot</h2><div class="sub">Antananarivo · Madagascar</div>
+   <div class="bt"><button class="btn" onclick="go('story')">＋ Ajouter à la story</button><button class="btn s">✏️ Modifier</button></div>
+   <div class="stats"><span><b>248</b> amis</span><span><b>32</b> publications</span></div></div>
+  <div class="card"><div class="h"><div class="av" style="background:var(--b)">J</div><div style="flex:1"><div class="n">Julianot</div><div class="s">il y a 1 j · 🌐</div></div></div><p>Bienvenue sur ASs Te !</p>
+   <div class="cnt"><span><i class="lk">👍</i>31</span><span>4 commentaires</span></div></div>
+  <button class="btn s" style="margin:8px 12px;width:auto" onclick="go('signup')">Se déconnecter</button>
+ </div></section>
+
+<nav class="nav" id="nav" style="display:none">
+ <button data-s="feed" class="on"><span>🏠</span>Accueil</button><button data-s="videos"><span>▶️</span>Vidéos</button><button data-s="friends"><span>👥</span>Amis</button><button data-s="msg"><span>💬</span>Messages</button><button data-s="profile"><span>👤</span>Profil</button>
+</nav>
+</div>
+<script>
+function go(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.toggle('on',s.id===id)});
+  document.getElementById('nav').style.display=(id==='signup'||id==='story')?'none':'flex';
+  document.querySelectorAll('#nav button').forEach(function(b){b.classList.toggle('on',b.dataset.s===id)});
+}
+document.getElementById('nav').addEventListener('click',function(e){var b=e.target.closest('button');if(b)go(b.dataset.s)});
+document.querySelectorAll('.lb').forEach(function(b){b.addEventListener('click',function(){
+  var on=b.classList.toggle('liked'),c=b.closest('.card').querySelector('.c'),n=+c.dataset.n;c.textContent=on?n+1:n})});
+document.querySelector('.vl').addEventListener('click',function(){
+  var c=this.querySelector('.vc'),on=this.classList.toggle('lk2');this.querySelector('b').textContent=on?'💙':'👍';c.textContent=on?'2,1 k+':'2,1 k'});
+['lang','mode'].forEach(function(id){document.getElementById(id).addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;this.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)})})});
+</script>
+</body>
+</html>
